@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import useLatestRef from "../utils/useLatestRef";
 import { isTouchDevice } from "../utils/general";
-import RippleButton from "./RippleButton";
 import { cx } from "../utils/styling";
 import Timer from "../utils/Timer";
 import ListenerGroup from "../utils/ListenerGroup";
+import RippleButton from "./RippleButton";
 
 type Point = [number, number];
 

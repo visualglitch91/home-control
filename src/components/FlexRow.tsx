@@ -1,24 +1,5 @@
-import { css, cx } from "../utils/styling";
-
-const classes = {
-  wrapper: css`
-    display: flex;
-    grid-gap: 8px;
-    justify-content: center;
-  `,
-  full: css`
-    width: 100%;
-  `,
-  wrap: css`
-    flex-wrap: wrap;
-  `,
-  left: css`
-    justify-content: flex-start;
-  `,
-  right: css`
-    justify-content: flex-end;
-  `,
-};
+import { cx } from "../utils/styling";
+import classes from "./FlexRow.module.scss";
 
 export default function FlexRow({
   className,
@@ -36,7 +17,7 @@ export default function FlexRow({
   return (
     <div
       className={cx(
-        classes.wrapper,
+        classes.root,
         align === "left" && classes.left,
         align === "right" && classes.right,
         wrap && classes.wrap,

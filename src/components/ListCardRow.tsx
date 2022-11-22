@@ -1,6 +1,6 @@
-import { cx } from "../../utils/styling";
-import Icon from "../Icon";
-import { IconWrapper, Label, Wrapper, classes } from "./components";
+import { cx } from "../utils/styling";
+import Icon from "./Icon";
+import classes from "./ListCardRow.module.scss";
 
 export default function ListCardRow({
   icon,
@@ -16,17 +16,20 @@ export default function ListCardRow({
   onIconClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }) {
   return (
-    <Wrapper className={cx(disabled && classes.wrapperDisabled)}>
+    <div className={cx(classes.root, disabled && classes.rootDisabled)}>
       {icon && (
-        <IconWrapper
-          className={cx(!!onIconClick && classes.clickableIconWrapper)}
+        <div
+          className={cx(
+            classes.iconWrapper,
+            !!onIconClick && classes.clickableIconWrapper
+          )}
           onClick={onIconClick}
         >
           <Icon icon={icon} />
-        </IconWrapper>
+        </div>
       )}
-      <Label>{label}</Label>
+      <div className={classes.label}>{label}</div>
       <div>{children}</div>
-    </Wrapper>
+    </div>
   );
 }

@@ -1,0 +1,99 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 180ms cubic-bezier(0.76, 0, 0.24, 1);
+  backdrop-filter: blur(10px);
+  will-change: opacity;
+  opacity: 0;
+  z-index: 2;
+
+  :global(body.mobile) & {
+    align-items: flex-end;
+    transition: opacity 400ms cubic-bezier(0.76, 0, 0.24, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  :global(.modal-transition-enter) & {
+    opacity: 0;
+  }
+
+  :global(.modal-transition-enter-active) & {
+    opacity: 1;
+  }
+
+  :global(.modal-transition-enter-done) & {
+    opacity: 1;
+  }
+
+  :global(.modal-transition-exit) & {
+    opacity: 1;
+  }
+
+  :global(.modal-transition-exit-active) & {
+    opacity: 0;
+  }
+
+  :global(.modal-transition-exit-done) & {
+    opacity: 0;
+  }
+}
+
+.root {
+  background: #2f3b52;
+  padding: 18px 18px 28px;
+  min-width: 300px;
+  border-radius: 6px;
+
+  :global(body.mobile) & {
+    width: 100%;
+    position: relative;
+    transform: translate3d(0, 100%, 0);
+    transition: transform 400ms cubic-bezier(0.76, 0, 0.24, 1);
+    will-change: transform;
+    border-radius: 16px;
+  }
+
+  :global(body.mobile) :global(.modal-transition-enter) & {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  :global(body.mobile) :global(.modal-transition-enter-active) & {
+    transform: translate3d(0, 0, 0);
+  }
+
+  :global(body.mobile) :global(.modal-transition-enter-done) & {
+    transform: translate3d(0, 0, 0);
+  }
+
+  :global(body.mobile) :global(.modal-transition-exit) & {
+    transform: translate3d(0, 0, 0);
+  }
+
+  :global(body.mobile) :global(.modal-transition-exit-active) & {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  :global(body.mobile) :global(.modal-transition-exit-done) & {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.header {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 8px;
+  font-size: 18px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}

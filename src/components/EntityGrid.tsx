@@ -1,42 +1,10 @@
 import { Fragment } from "react";
-import { css, styled } from "../utils/styling";
 import Paper from "./Paper";
 import EntityButton from "./EntityButton";
 import EntitiesSwitch from "./EntitiesSwitch";
 import { Row } from "./ListCard";
 import { useResponsive } from "../utils/general";
-
-const Header = styled(
-  Paper,
-  css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    padding: 8px 16px;
-    column-gap: 8px;
-    margin-bottom: 16px;
-  `
-);
-
-const Heading = styled(
-  "h2",
-  css`
-    margin: 0;
-    font-size: 18px;
-    line-height: 32px;
-  `
-);
-
-const Content = styled(
-  "div",
-  css`
-    display: grid;
-    justify-content: center;
-    grid-gap: 8px;
-    grid-template-columns: repeat(auto-fill, minmax(min(80px, 100%), 1fr));
-  `
-);
+import classes from "./EntityGrid.module.scss";
 
 export default function EntityGrid({
   title,
@@ -80,18 +48,18 @@ export default function EntityGrid({
   return (
     <div>
       {Boolean(title) && (
-        <Header>
-          <Heading>{title}</Heading>
+        <Paper className={classes.header}>
+          <h2 className={classes.heading}>{title}</h2>
           {showGroupSwitch && Boolean(groupedEntityIds.length) && (
             <EntitiesSwitch entityIds={groupedEntityIds} />
           )}
-        </Header>
+        </Paper>
       )}
-      <Content>
+      <div className={classes.content}>
         {rows.map((row, index) => (
           <Fragment key={index}>{renderRow(row)}</Fragment>
         ))}
-      </Content>
+      </div>
     </div>
   );
 }

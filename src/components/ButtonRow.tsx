@@ -1,15 +1,5 @@
-import { css, cx } from "../utils/styling";
-
-const buttonRowClassName = css`
-  width: 100%;
-  display: flex;
-  grid-gap: 8px;
-
-  & > * {
-    flex: 1;
-    overflow: hidden;
-  }
-`;
+import { cx } from "../utils/styling";
+import classes from "./ButtonRow.module.scss";
 
 export default function ButtonRow({
   children,
@@ -23,7 +13,7 @@ export default function ButtonRow({
   return (
     <div
       style={{ height: height && `${height}px` }}
-      className={cx(className, buttonRowClassName)}
+      className={cx(className, classes.root)}
     >
       {children}
     </div>

@@ -1,0 +1,16 @@
+.root {
+  padding: 16px;
+}
+
+.columns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+  row-gap: 16px;
+}

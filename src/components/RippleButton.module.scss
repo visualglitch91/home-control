@@ -1,0 +1,9 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+
+  & * {
+    pointer-events: none;
+  }
+}

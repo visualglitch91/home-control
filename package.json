@@ -12,12 +12,12 @@
   "dependencies": {
     "@uiw/react-color-wheel": "^1.1.1",
     "better-scroll": "^2.5.0",
-    "goober": "^2.1.11",
     "hls.js": "^1.2.7",
     "home-assistant-js-websocket": "^8.0.0",
     "macy": "^2.5.1",
     "preact": "^10.11.3",
     "preact-transitioning": "^1.3.2",
+    "sass": "^1.56.1",
     "simplebar": "^5.3.9"
   },
   "devDependencies": {

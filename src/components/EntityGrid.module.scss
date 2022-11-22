@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 8px 16px;
+  column-gap: 8px;
+  margin-bottom: 16px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.content {
+  display: grid;
+  justify-content: center;
+  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(min(80px, 100%), 1fr));
+}

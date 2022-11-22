@@ -1,20 +1,9 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { isTouchDevice } from "../utils/general";
 import ListenerGroup from "../utils/ListenerGroup";
-import { css, styled } from "../utils/styling";
+import { cx } from "../utils/styling";
 import Timer from "../utils/Timer";
-
-const StyledButton = styled(
-  "button",
-  css`
-    position: relative;
-    display: inline-flex;
-    overflow: hidden;
-    & * {
-      pointer-events: none;
-    }
-  `
-);
+import classes from "./RippleButton.module.scss";
 
 const initialRippleStyle: React.CSSProperties = {
   position: "absolute",
@@ -78,7 +67,7 @@ function Ripple({ top, left, size, "data-key": key, onDone }: RippleProps) {
 const RippleButton = forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
->((props, externalRef) => {
+>(({ className, ...props }, externalRef) => {
   const internalRef = useRef<HTMLButtonElement>(null);
   const buttonRef = externalRef || internalRef;
   const counterRef = useRef(0);
@@ -127,12 +116,12 @@ const RippleButton = forwardRef<
   }, [buttonRef]);
 
   return (
-    <StyledButton {...props} ref={buttonRef}>
+    <button {...props} ref={buttonRef} className={cx(className, classes.root)}>
       {props.children}
       {ripples.map(({ key, ...props }) => (
         <Ripple {...props} key={key} />
       ))}
-    </StyledButton>
+    </button>
   );
 });
 

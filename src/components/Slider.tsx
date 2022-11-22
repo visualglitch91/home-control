@@ -1,5 +1,5 @@
-import { useDebouncedCallback } from "../../utils/general";
-import { sliderClassName } from "./styles";
+import { useDebouncedCallback } from "../utils/general";
+import classes from "./Slider.module.scss";
 
 function cast(value: number | undefined) {
   if (typeof value === "undefined") {
@@ -31,7 +31,7 @@ export default function Slider({
     <input
       {...props}
       type="range"
-      className={sliderClassName}
+      className={classes.root}
       value={cast(value)}
       defaultValue={cast(defaultValue)}
       onInput={(e) => {

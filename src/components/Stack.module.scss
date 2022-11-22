@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  grid-gap: 16px;
+}
+
+.horizontal {
+  flex-direction: row;
+  & > * {
+    flex: 1;
+  }
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.smallGap {
+  grid-gap: 8px;
+}

@@ -1,0 +1,18 @@
+.button {
+  padding: 0;
+  outline: none;
+  border: 0;
+  font-size: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > i {
+    position: absolute;
+    left: calc(50% - 12px);
+    top: calc(50% - 12px);
+  }
+}

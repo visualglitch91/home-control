@@ -1,9 +1,10 @@
-import useAsyncChange from "../../utils/useAsyncChange";
-import { cx } from "../../utils/styling";
-import Icon from "../Icon";
-import { ButtonCardProps } from "../ButtonCard";
-import CircularLoading from "../CircularLoading";
-import { Label, Wrapper, classes } from "./components";
+import useAsyncChange from "../utils/useAsyncChange";
+import { cx } from "../utils/styling";
+import Icon from "./Icon";
+import { ButtonCardProps } from "./ButtonCard";
+import CircularLoading from "./CircularLoading";
+import ButtonCard from "./ButtonCard";
+import classes from "./BaseEntityButton.module.scss";
 
 export default function BaseEntityButton({
   icon,
@@ -28,12 +29,13 @@ export default function BaseEntityButton({
   });
 
   return (
-    <Wrapper
+    <ButtonCard
       {...props}
       disabled={unavailable}
       className={cx(
-        backgroundColor && !changing && classes.wrapperCustomBG,
-        checked && !changing && classes.wrapperActive
+        classes.root,
+        backgroundColor && !changing && classes.rootCustomBG,
+        checked && !changing && classes.rootActive
       )}
       style={backgroundColor && !changing ? { backgroundColor } : undefined}
       onTap={() => {
@@ -47,9 +49,9 @@ export default function BaseEntityButton({
       ) : (
         <>
           <Icon icon={unavailable ? "cancel" : icon || "cancel"} />
-          <Label>{label}</Label>
+          <div className={classes.label}>{label}</div>
         </>
       )}
-    </Wrapper>
+    </ButtonCard>
   );
 }

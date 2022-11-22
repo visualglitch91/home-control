@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+
+  & img,
+  & video {
+    width: 100%;
+  }
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: background 70ms linear;
+}
+
+.buttons {
+  padding: 8px 0;
+}

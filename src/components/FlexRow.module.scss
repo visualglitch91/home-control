@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  grid-gap: 8px;
+  justify-content: center;
+}
+
+.full {
+  width: 100%;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}

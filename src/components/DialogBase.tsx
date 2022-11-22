@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import Timer from "../../utils/Timer";
-import Button from "../Button";
-import Icon from "../Icon";
-import { Wrapper, Root, Header, Content } from "./components";
+import Timer from "../utils/Timer";
+import Button from "./Button";
+import Icon from "./Icon";
+import classes from "./DialogBase.module.scss";
 
 export default function DialogBase({
   title,
@@ -32,16 +32,20 @@ export default function DialogBase({
   }
 
   return (
-    <Wrapper ref={overlayRef} onClick={onOverlayClick}>
-      <Root onMouseDown={keepOpen} onTouchStart={keepOpen}>
-        <Header>
+    <div className={classes.wrapper} ref={overlayRef} onClick={onOverlayClick}>
+      <div
+        className={classes.root}
+        onMouseDown={keepOpen}
+        onTouchStart={keepOpen}
+      >
+        <div className={classes.header}>
           {title}
           <Button onTap={onClose}>
             <Icon icon="close" />
           </Button>
-        </Header>
-        <Content>{children}</Content>
-      </Root>
-    </Wrapper>
+        </div>
+        <div className={classes.content}>{children}</div>
+      </div>
+    </div>
   );
 }

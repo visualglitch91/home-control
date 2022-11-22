@@ -1,8 +1,6 @@
 import { forwardRef } from "react";
 import { AbstractComponent, PropsOf } from "./typings";
 
-export { css, keyframes } from "goober";
-
 export function cx(...classNames: (string | null | undefined | false)[]) {
   return classNames.filter(Boolean).join(" ");
 }

@@ -1,0 +1,10 @@
+.root {
+  width: 100%;
+  display: flex;
+  grid-gap: 8px;
+
+  & > * {
+    flex: 1;
+    overflow: hidden;
+  }
+}

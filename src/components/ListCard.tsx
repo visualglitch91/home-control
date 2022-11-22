@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { HassEntity } from "home-assistant-js-websocket";
-import Paper from "../Paper";
-import EntityRow from "../EntityRow";
-import EntitiesSwitch from "../EntitiesSwitch";
-import { Header, Heading, Content, Divider } from "./components";
-import { useResponsive } from "../../utils/general";
+import Paper from "./Paper";
+import EntityRow from "./EntityRow";
+import EntitiesSwitch from "./EntitiesSwitch";
+import { useResponsive } from "../utils/general";
+import classes from "./ListCard.module.scss";
 
 export type Row =
   | {
@@ -50,7 +50,7 @@ export default function ListCard({
       case "entity":
         return <EntityRow {...row} />;
       case "divider":
-        return <Divider />;
+        return <div className={classes.divider} />;
       case "custom":
         return row.render();
       default:
@@ -73,18 +73,18 @@ export default function ListCard({
   return (
     <Paper className={className}>
       {Boolean(title) && (
-        <Header>
-          <Heading>{title}</Heading>
+        <div className={classes.header}>
+          <h2 className={classes.heading}>{title}</h2>
           {showGroupSwitch && Boolean(groupedEntityIds.length) && (
             <EntitiesSwitch entityIds={groupedEntityIds} />
           )}
-        </Header>
+        </div>
       )}
-      <Content>
+      <div className={classes.content}>
         {rows.map((row, index) => (
           <Fragment key={index}>{renderRow(row)}</Fragment>
         ))}
-      </Content>
+      </div>
     </Paper>
   );
 }

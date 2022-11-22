@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { useDebouncedCallback, RGB } from "../../utils/general";
-import Icon from "../Icon";
-import DialogBase from "../DialogBase";
-import ColorWheel from "../ColorWheel";
-import Slider from "../Slider";
-import FlexRow from "../FlexRow";
-import { Tab, Content, StyledColorPresets, Tabs, classes } from "./components";
-import { cx } from "../../utils/styling";
+import { useDebouncedCallback, RGB } from "../utils/general";
+import { cx } from "../utils/styling";
+import Icon from "./Icon";
+import DialogBase from "./DialogBase";
+import ColorWheel from "./ColorWheel";
+import Slider from "./Slider";
+import FlexRow from "./FlexRow";
+import ColorPresets from "./ColorPresets";
+import Button from "./Button";
+import classes from "./LightDialog.module.scss";
 
 export interface LightDialogFeatures {
   brightness: {
@@ -83,27 +85,30 @@ export default function LightDialog({
 
   return (
     <DialogBase title={title} onClose={onClose}>
-      <Content>
+      <div className={classes.content}>
         {features.temperature && features.color && (
-          <Tabs>
+          <div className={classes.tabs}>
             {(
               [
                 { key: "color", label: "Cor" },
                 { key: "temperature", label: "Frio/Quente" },
               ] as const
             ).map((it) => (
-              <Tab
+              <Button
                 key={it.key}
-                className={cx(mode === it.key && classes.tabActive)}
+                className={cx(
+                  classes.tab,
+                  mode === it.key && classes.tabActive
+                )}
                 onTap={() => {
                   setMode(it.key);
                   onModeChange(it.key);
                 }}
               >
                 {it.label}
-              </Tab>
+              </Button>
             ))}
-          </Tabs>
+          </div>
         )}
         {features.brightness ? (
           <FlexRow full>
@@ -136,9 +141,10 @@ export default function LightDialog({
                 onChange("color", color);
               }}
             />
-            <StyledColorPresets
+            <ColorPresets
               radius={8}
               size={46}
+              className={classes.colorPresets}
               selected={selectedColor}
               onChange={(color) => {
                 setSelectedColor(color);
@@ -147,7 +153,7 @@ export default function LightDialog({
             />
           </>
         )}
-      </Content>
+      </div>
     </DialogBase>
   );
 }

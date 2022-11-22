@@ -1,10 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 import { CSSTransition, TransitionGroup } from "preact-transitioning";
-import { clamp, loadValue, saveValue } from "../../utils/general";
-import managedScroll, { ManagedScroll } from "../../utils/managedScroll";
-import Stack from "../Stack";
-import Tab from "./Tab";
-import { Wrapper, Tabs, Content, StatusBar } from "./components";
+import { clamp, loadValue, saveValue } from "../utils/general";
+import managedScroll, { ManagedScroll } from "../utils/managedScroll";
+import { cx } from "../utils/styling";
+import Stack from "./Stack";
+import TouchButton from "./TouchButton";
+import Icon from "./Icon";
+import classes from "./MobileLayout.module.scss";
+
+function Tab({
+  active,
+  title,
+  icon,
+  onTap,
+}: {
+  active: boolean;
+  title: string;
+  icon: string;
+  onTap: () => void;
+}) {
+  return (
+    <TouchButton
+      type="button"
+      className={cx(classes.tab, active && classes.tabActive)}
+      onTap={onTap}
+    >
+      <Icon icon={icon} />
+      {title}
+    </TouchButton>
+  );
+}
 
 export default function MobileLayout({
   tabs,
@@ -53,8 +78,8 @@ export default function MobileLayout({
   }, [active]);
 
   return (
-    <Wrapper ref={wrapperRef}>
-      <Content>
+    <div className={classes.root} ref={wrapperRef}>
+      <div className={classes.content}>
         <TransitionGroup duration={250}>
           <CSSTransition
             key={active}
@@ -65,9 +90,9 @@ export default function MobileLayout({
             <Stack className="mobile-layout__fade">{content}</Stack>
           </CSSTransition>
         </TransitionGroup>
-      </Content>
-      <StatusBar />
-      <Tabs>
+      </div>
+      <div className={classes.statusbar} />
+      <div className={classes.tabs}>
         {tabs.map((tab, index) => (
           <Tab
             key={index}
@@ -77,7 +102,7 @@ export default function MobileLayout({
             onTap={() => setActive(index)}
           />
         ))}
-      </Tabs>
-    </Wrapper>
+      </div>
+    </div>
   );
 }

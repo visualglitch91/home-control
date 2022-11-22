@@ -1,32 +1,10 @@
-import { css, styled } from "../utils/styling";
 import { getContrastColor, RGB } from "../utils/general";
 import { colorPresets, isColorEqual } from "../utils/colorPresets";
 import Icon from "./Icon";
 import FlexRow from "./FlexRow";
 import ColorBadge from "./ColorBadge";
 import RippleButton from "./RippleButton";
-
-const ColorPresetButton = styled(
-  RippleButton,
-  css`
-    padding: 0;
-    outline: none;
-    border: 0;
-    font-size: 0;
-    background: transparent;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    & > i {
-      position: absolute;
-      left: calc(50%- 12px);
-      top: calc(50%- 12px);
-    }
-  `
-);
+import classes from "./ColorPresets.module.scss";
 
 export default function ColorPresets({
   className,
@@ -44,7 +22,11 @@ export default function ColorPresets({
   return (
     <FlexRow wrap className={className}>
       {colorPresets.map((color, index) => (
-        <ColorPresetButton key={index} onClick={() => onChange(color)}>
+        <RippleButton
+          key={index}
+          className={classes.button}
+          onClick={() => onChange(color)}
+        >
           {selected && isColorEqual(selected, color) && (
             <Icon
               size={24}
@@ -53,7 +35,7 @@ export default function ColorPresets({
             />
           )}
           <ColorBadge radius={radius} size={size} color={color} />
-        </ColorPresetButton>
+        </RippleButton>
       ))}
     </FlexRow>
   );

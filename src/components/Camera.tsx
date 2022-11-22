@@ -1,48 +1,10 @@
-import { styled, css } from "../utils/styling";
 import { makeServiceCall, useEntity } from "../utils/hass";
 import Paper from "./Paper";
 import FlexRow from "./FlexRow";
 import CameraStream from "./CameraStream";
 import CameraSnapshot from "./CameraSnapshot";
 import PillButton from "./PillButton";
-
-const Wrapper = styled(
-  Paper,
-  css`
-    position: relative;
-    min-height: 200px;
-    overflow: hidden;
-
-    & img,
-    & video {
-      width: 100%;
-    }
-  `
-);
-
-const Overlay = styled(
-  "div",
-  css`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    transition: background 70ms linear;
-  `
-);
-
-const Buttons = styled(
-  FlexRow,
-  css`
-    padding: 8px 0;
-  `
-);
+import classes from "./Camera.module.scss";
 
 export default function Camera({
   stream,
@@ -74,7 +36,7 @@ export default function Camera({
   }
 
   return (
-    <Wrapper>
+    <Paper className={classes.root}>
       {online ? (
         stream ? (
           <CameraStream entityId={streamEntityId} />
@@ -82,16 +44,16 @@ export default function Camera({
           <CameraSnapshot entityId={streamEntityId} />
         )
       ) : (
-        <Overlay>Câmera Indisponível</Overlay>
+        <div className={classes.overlay}>Câmera Indisponível</div>
       )}
       {online && (
-        <Buttons wrap>
+        <FlexRow wrap className={classes.buttons}>
           <PillButton icon="arrow-left" onClick={pan("LEFT")} />
           <PillButton icon="arrow-down" onClick={tilt("DOWN")} />
           <PillButton icon="arrow-up" onClick={tilt("UP")} />
           <PillButton icon="arrow-right" onClick={pan("RIGHT")} />
-        </Buttons>
+        </FlexRow>
       )}
-    </Wrapper>
+    </Paper>
   );
 }

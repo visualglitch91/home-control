@@ -1,24 +1,6 @@
 import { forwardRef } from "react";
-import { css, cx } from "../utils/styling";
-
-const classes = {
-  wrapper: css`
-    display: flex;
-    grid-gap: 16px;
-  `,
-  horizontal: css`
-    flex-direction: row;
-    & > * {
-      flex: 1;
-    }
-  `,
-  vertical: css`
-    flex-direction: column;
-  `,
-  smallGap: css`
-    grid-gap: 8px;
-  `,
-};
+import { cx } from "../utils/styling";
+import classes from "./Stack.module.scss";
 
 const Stack = forwardRef(function Stack(
   {
@@ -41,7 +23,7 @@ const Stack = forwardRef(function Stack(
       ref={ref}
       title={title}
       className={cx(
-        classes.wrapper,
+        classes.root,
         horizontal && classes.horizontal,
         !horizontal && classes.vertical,
         smallGap && classes.smallGap,

@@ -1,25 +1,11 @@
 import { Children, useCallback, useEffect, useRef, useState } from "react";
-import { css, styled } from "../utils/styling";
+import { cx } from "../utils/styling";
 import { useDebouncedCallback } from "../utils/general";
+import classes from "./MasonryLayout.module.scss";
 
 const gutter = 16;
 const smallerColumnWidth = 300;
 const largerColumnWidth = 400;
-
-const Wrapper = styled(
-  "div",
-  css`
-    padding: 8px;
-    transition: opacity 70ms linear;
-  `
-);
-
-const Item = styled(
-  "div",
-  css`
-    padding: 8px;
-  `
-);
 
 function MasonryLayoutItem({
   children,
@@ -53,7 +39,11 @@ function MasonryLayoutItem({
     };
   }, []);
 
-  return <Item ref={nodeRef}>{children}</Item>;
+  return (
+    <div className={classes.item} ref={nodeRef}>
+      {children}
+    </div>
+  );
 }
 
 export default function MasonryLayout({
@@ -112,7 +102,10 @@ export default function MasonryLayout({
   }, []);
 
   return (
-    <Wrapper style={{ opacity: ready ? 1 : 0 }} className={className}>
+    <div
+      className={cx(className, classes.root)}
+      style={{ opacity: ready ? 1 : 0 }}
+    >
       <div ref={nodeRef}>
         {items.map((item, index) => (
           <MasonryLayoutItem key={index} onSizeChange={recalculateMacy}>
@@ -120,6 +113,6 @@ export default function MasonryLayout({
           </MasonryLayoutItem>
         ))}
       </div>
-    </Wrapper>
+    </div>
   );
 }
