@@ -1,17 +1,20 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { isTouchDevice } from "../utils/general";
 import ListenerGroup from "../utils/ListenerGroup";
-import { styled } from "../utils/styling";
+import { css, styled } from "../utils/styling";
 import Timer from "../utils/Timer";
 
-const StyledButton = styled("button")`
-  position: relative;
-  display: inline-flex;
-  overflow: hidden;
-  & * {
-    pointer-events: none;
-  }
-`;
+const StyledButton = styled(
+  "button",
+  css`
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    & * {
+      pointer-events: none;
+    }
+  `
+);
 
 const initialRippleStyle: React.CSSProperties = {
   position: "absolute",

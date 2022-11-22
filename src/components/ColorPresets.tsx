@@ -1,4 +1,4 @@
-import { styled } from "../utils/styling";
+import { css, styled } from "../utils/styling";
 import { getContrastColor, RGB } from "../utils/general";
 import { colorPresets, isColorEqual } from "../utils/colorPresets";
 import Icon from "./Icon";
@@ -6,24 +6,27 @@ import FlexRow from "./FlexRow";
 import ColorBadge from "./ColorBadge";
 import RippleButton from "./RippleButton";
 
-const ColorPresetButton = styled(RippleButton)`
-  padding: 0;
-  outline: none;
-  border: 0;
-  font-size: 0;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const ColorPresetButton = styled(
+  RippleButton,
+  css`
+    padding: 0;
+    outline: none;
+    border: 0;
+    font-size: 0;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  & > i {
-    position: absolute;
-    left: calc(50%- 12px);
-    top: calc(50%- 12px);
-  }
-`;
+    & > i {
+      position: absolute;
+      left: calc(50%- 12px);
+      top: calc(50%- 12px);
+    }
+  `
+);
 
 export default function ColorPresets({
   className,

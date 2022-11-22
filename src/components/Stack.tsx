@@ -1,13 +1,56 @@
-import { styled } from "../utils/styling";
+import { forwardRef } from "react";
+import { css, cx } from "../utils/styling";
 
-const Stack = styled("div")<{
-  horizontal?: boolean;
-  smallGap?: boolean;
-}>`
-  display: flex;
-  grid-gap: ${(p) => (p.smallGap ? "8px" : "16px")};
-  flex-direction: ${(p) => (p.horizontal ? "row" : "column")};
-  flex: ${(p) => (p.horizontal ? 1 : "unset")};
-`;
+const classes = {
+  wrapper: css`
+    display: flex;
+    grid-gap: 16px;
+  `,
+  horizontal: css`
+    flex-direction: row;
+    & > * {
+      flex: 1;
+    }
+  `,
+  vertical: css`
+    flex-direction: column;
+  `,
+  smallGap: css`
+    grid-gap: 8px;
+  `,
+};
+
+const Stack = forwardRef(function Stack(
+  {
+    className,
+    horizontal,
+    smallGap,
+    children,
+    title,
+  }: {
+    className?: string;
+    horizontal?: boolean;
+    smallGap?: boolean;
+    children: React.ReactNode;
+    title?: string;
+  },
+  ref: React.LegacyRef<HTMLDivElement>
+) {
+  return (
+    <div
+      ref={ref}
+      title={title}
+      className={cx(
+        classes.wrapper,
+        horizontal && classes.horizontal,
+        !horizontal && classes.vertical,
+        smallGap && classes.smallGap,
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+});
 
 export default Stack;

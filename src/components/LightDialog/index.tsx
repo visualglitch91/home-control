@@ -5,7 +5,8 @@ import DialogBase from "../DialogBase";
 import ColorWheel from "../ColorWheel";
 import Slider from "../Slider";
 import FlexRow from "../FlexRow";
-import { Tab, Content, StyledColorPresets, Tabs } from "./components";
+import { Tab, Content, StyledColorPresets, Tabs, classes } from "./components";
+import { cx } from "../../utils/styling";
 
 export interface LightDialogFeatures {
   brightness: {
@@ -93,7 +94,7 @@ export default function LightDialog({
             ).map((it) => (
               <Tab
                 key={it.key}
-                active={mode === it.key}
+                className={cx(mode === it.key && classes.tabActive)}
                 onTap={() => {
                   setMode(it.key);
                   onModeChange(it.key);

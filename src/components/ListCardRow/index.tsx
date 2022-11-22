@@ -1,5 +1,6 @@
+import { cx } from "../../utils/styling";
 import Icon from "../Icon";
-import { IconWrapper, Label, Wrapper } from "./components";
+import { IconWrapper, Label, Wrapper, classes } from "./components";
 
 export default function ListCardRow({
   icon,
@@ -15,9 +16,12 @@ export default function ListCardRow({
   onIconClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }) {
   return (
-    <Wrapper disabled={disabled}>
+    <Wrapper className={cx(disabled && classes.wrapperDisabled)}>
       {icon && (
-        <IconWrapper onClick={onIconClick}>
+        <IconWrapper
+          className={cx(!!onIconClick && classes.clickableIconWrapper)}
+          onClick={onIconClick}
+        >
           <Icon icon={icon} />
         </IconWrapper>
       )}

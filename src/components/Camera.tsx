@@ -1,4 +1,4 @@
-import { styled } from "../utils/styling";
+import { styled, css } from "../utils/styling";
 import { makeServiceCall, useEntity } from "../utils/hass";
 import Paper from "./Paper";
 import FlexRow from "./FlexRow";
@@ -6,34 +6,43 @@ import CameraStream from "./CameraStream";
 import CameraSnapshot from "./CameraSnapshot";
 import PillButton from "./PillButton";
 
-const Wrapper = styled(Paper)`
-  position: relative;
-  min-height: 200px;
-  overflow: hidden;
+const Wrapper = styled(
+  Paper,
+  css`
+    position: relative;
+    min-height: 200px;
+    overflow: hidden;
 
-  & img,
-  & video {
+    & img,
+    & video {
+      width: 100%;
+    }
+  `
+);
+
+const Overlay = styled(
+  "div",
+  css`
+    position: absolute;
     width: 100%;
-  }
-`;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background 70ms linear;
+  `
+);
 
-const Overlay = styled("div")`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  transition: background 70ms linear;
-`;
-
-const Buttons = styled(FlexRow)`
-  padding: 8px 0;
-`;
+const Buttons = styled(
+  FlexRow,
+  css`
+    padding: 8px 0;
+  `
+);
 
 export default function Camera({
   stream,

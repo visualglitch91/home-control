@@ -1,4 +1,4 @@
-import { styled } from "../../utils/styling";
+import { css } from "../../utils/styling";
 
 const height = "30px";
 const track = "#20293c";
@@ -6,7 +6,7 @@ const filled = "#dc456c";
 const thumbColor = "transparent";
 const thumbWidth = "0";
 
-export const Input = styled("input")`
+export const sliderClassName = css`
   margin: auto;
   appearance: none;
   -webkit-appearance: none;

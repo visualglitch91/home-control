@@ -1,11 +1,9 @@
-import { styled } from "../utils/styling";
+import { css, cx } from "../utils/styling";
 
-const ButtonRow = styled("div")<{ height?: number }>`
+const buttonRowClassName = css`
   width: 100%;
   display: flex;
   grid-gap: 8px;
-  height: ${(p) =>
-    typeof p.height === "number" ? `${p.height}px` : "undefined"};
 
   & > * {
     flex: 1;
@@ -13,4 +11,21 @@ const ButtonRow = styled("div")<{ height?: number }>`
   }
 `;
 
-export default ButtonRow;
+export default function ButtonRow({
+  children,
+  className,
+  height,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  height?: number;
+}) {
+  return (
+    <div
+      style={{ height: height && `${height}px` }}
+      className={cx(className, buttonRowClassName)}
+    >
+      {children}
+    </div>
+  );
+}

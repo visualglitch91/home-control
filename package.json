@@ -10,17 +10,14 @@
     "lint": "eslint --max-warnings=0 --ext .tsx,.ts,.jsx,.js ./src && tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
     "@uiw/react-color-wheel": "^1.1.1",
     "better-scroll": "^2.5.0",
+    "goober": "^2.1.11",
     "hls.js": "^1.2.7",
     "home-assistant-js-websocket": "^8.0.0",
     "macy": "^2.5.1",
     "preact": "^10.11.3",
     "preact-transitioning": "^1.3.2",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
     "simplebar": "^5.3.9"
   },
   "devDependencies": {

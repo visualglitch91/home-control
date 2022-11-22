@@ -1,33 +1,42 @@
 import { Fragment } from "react";
-import { styled } from "../utils/styling";
+import { css, styled } from "../utils/styling";
 import Paper from "./Paper";
 import EntityButton from "./EntityButton";
 import EntitiesSwitch from "./EntitiesSwitch";
 import { Row } from "./ListCard";
 import { useResponsive } from "../utils/general";
 
-const Header = styled(Paper)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  padding: 8px 16px;
-  column-gap: 8px;
-  margin-bottom: 16px;
-`;
+const Header = styled(
+  Paper,
+  css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 8px 16px;
+    column-gap: 8px;
+    margin-bottom: 16px;
+  `
+);
 
-const Heading = styled("h2")`
-  margin: 0;
-  font-size: 18px;
-  line-height: 32px;
-`;
+const Heading = styled(
+  "h2",
+  css`
+    margin: 0;
+    font-size: 18px;
+    line-height: 32px;
+  `
+);
 
-const Content = styled("div")`
-  display: grid;
-  justify-content: center;
-  grid-gap: 8px;
-  grid-template-columns: repeat(auto-fill, minmax(min(80px, 100%), 1fr));
-`;
+const Content = styled(
+  "div",
+  css`
+    display: grid;
+    justify-content: center;
+    grid-gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(min(80px, 100%), 1fr));
+  `
+);
 
 export default function EntityGrid({
   title,

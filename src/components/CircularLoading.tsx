@@ -1,4 +1,4 @@
-import { styled, keyframes } from "../utils/styling";
+import { styled, keyframes, css } from "../utils/styling";
 
 const rotate = keyframes`
   100% {
@@ -21,23 +21,26 @@ const stroke = keyframes`
   }
 `;
 
-const Wrapper = styled("div")`
-  margin: 0px auto;
-  width: 30px;
-  height: 30px;
+const Wrapper = styled(
+  "div",
+  css`
+    margin: 0px auto;
+    width: 30px;
+    height: 30px;
 
-  & > svg {
-    animation: ${rotate} 2s linear infinite;
-  }
+    & > svg {
+      animation: ${rotate} 2s linear infinite;
+    }
 
-  & > svg > circle {
-    fill: none;
-    stroke-width: 3px;
-    animation: ${stroke} 1.5s ease-in-out infinite;
-    stroke-linecap: round;
-    stroke: #f64270;
-  }
-`;
+    & > svg > circle {
+      fill: none;
+      stroke-width: 3px;
+      animation: ${stroke} 1.5s ease-in-out infinite;
+      stroke-linecap: round;
+      stroke: #f64270;
+    }
+  `
+);
 
 export default function CircularLoading() {
   return (

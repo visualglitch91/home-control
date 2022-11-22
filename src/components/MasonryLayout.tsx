@@ -1,19 +1,25 @@
 import { Children, useCallback, useEffect, useRef, useState } from "react";
-import { styled } from "../utils/styling";
+import { css, styled } from "../utils/styling";
 import { useDebouncedCallback } from "../utils/general";
 
 const gutter = 16;
 const smallerColumnWidth = 300;
 const largerColumnWidth = 400;
 
-const Wrapper = styled("div")`
-  padding: 8px;
-  transition: opacity 70ms linear;
-`;
+const Wrapper = styled(
+  "div",
+  css`
+    padding: 8px;
+    transition: opacity 70ms linear;
+  `
+);
 
-const Item = styled("div")`
-  padding: 8px;
-`;
+const Item = styled(
+  "div",
+  css`
+    padding: 8px;
+  `
+);
 
 function MasonryLayoutItem({
   children,
