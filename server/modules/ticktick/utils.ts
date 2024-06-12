@@ -1,4 +1,4 @@
-export function normalizeDate(date: string, timeZone: string) {
+export function normalizeDate(date: string, timeZone?: string) {
   if (!timeZone) {
     const [parsedDate] = date.split(".");
     return new Date(parsedDate);
